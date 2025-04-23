@@ -1,11 +1,13 @@
 package com.example.mtb.service.impl;
 
 import com.example.mtb.dto.UserRegistrationResuest;
+import com.example.mtb.dto.UserRequest;
 import com.example.mtb.dto.UserResponse;
 import com.example.mtb.entity.TheaterOwner;
 import com.example.mtb.entity.User;
 import com.example.mtb.entity.UserDetails;
 import com.example.mtb.enums.UserRole;
+import com.example.mtb.excaption.UserNotFoundByEmailExcaption;
 import com.example.mtb.excaption.UserRegistrationexcaption;
 import com.example.mtb.repository.TheaterOwnerRepository;
 import com.example.mtb.repository.UserDetailsRepository;
@@ -13,6 +15,8 @@ import com.example.mtb.repository.UserRepository;
 import com.example.mtb.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -27,9 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse userRegister(UserRegistrationResuest user) {
-        if(userDetailsRepository.existsByEmail(user.email())){
+        if (userDetailsRepository.existsByEmail(user.email())) {
             throw new UserRegistrationexcaption("this email already existed");
-        }else{
+        } else {
 
             if (user.userRole() == UserRole.USER) {
                 User newUser = new User();
@@ -47,9 +51,6 @@ public class UserServiceImpl implements UserService {
                         newUser.getUsername(),
                         newUser.getEmail(),
                         newUser.getUserRole());
-
-
-
 
 
             } else if (user.userRole() == UserRole.THEATER_OWNER) {
@@ -75,6 +76,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public String updateUser(UserRequest updatedUser, String email) {
+        Optional<UserDetails> opt = userDetailsRepository.findByEmail(email);
+        if (opt.isEmpty()) {
+            throw new UserNotFoundByEmailExcaption("user not found based on this email");
+        } else {
+            UserDetails oldUserDetails = opt.get();
 
 
+            UserDetails user = oldUserDetails;
+            user.setUsername(updatedUser.username());
+            user.setPhoneNumber(updatedUser.phoneNumber());
+            user.setDateOfBirth(updatedUser.dateOfBirth());
+
+            userDetailsRepository.save(user);
+            return "update sucessfully";
+
+
+        }
+
+
+    }
 }

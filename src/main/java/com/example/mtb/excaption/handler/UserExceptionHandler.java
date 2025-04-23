@@ -1,5 +1,6 @@
 package com.example.mtb.excaption.handler;
 
+import com.example.mtb.excaption.UserNotFoundByEmailExcaption;
 import com.example.mtb.excaption.UserRegistrationexcaption;
 import com.example.mtb.utility.ErrorStructure;
 import com.example.mtb.utility.RestErrorBuilder;
@@ -26,6 +27,12 @@ public class UserExceptionHandler {
 
         return restErrorBuilder.fail(HttpStatus.BAD_REQUEST, ex.getMessage(), "enter the proper UserRole");
 
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure<String>> handlerUserNotFoundByEmailExcaption(UserNotFoundByEmailExcaption ex){
+
+        return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "Enter the proper email");
     }
 
 }
