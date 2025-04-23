@@ -1,5 +1,6 @@
 package com.example.mtb.service.impl;
 
+import com.example.mtb.dto.UserRegistrationResuest;
 import com.example.mtb.entity.TheaterOwner;
 import com.example.mtb.entity.User;
 import com.example.mtb.entity.UserDetails;
@@ -24,19 +25,19 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDetails userRegister(UserDetails user) {
-        if(userDetailsRepository.existsByEmail(user.getEmail())){
+    public UserDetails userRegister(UserRegistrationResuest user) {
+        if(userDetailsRepository.existsByEmail(user.email())){
             throw new UserRegistrationexcaption("this email already existed");
         }else{
 
-            if (user.getUserRole() == UserRole.USER) {
+            if (user.userRole() == UserRole.USER) {
                 User newUser = new User();
-                newUser.setUsername(user.getUsername());
-                newUser.setEmail(user.getEmail());
-                newUser.setPassword(user.getPassword());
-                newUser.setUserRole(user.getUserRole());
-                newUser.setPhoneNumber(user.getPhoneNumber());
-                newUser.setDateOfBirth(user.getDateOfBirth());
+                newUser.setUsername(user.username());
+                newUser.setEmail(user.email());
+                newUser.setPassword(user.password());
+                newUser.setUserRole(user.userRole());
+                newUser.setPhoneNumber(user.phoneNumber());
+                newUser.setDateOfBirth(user.dateOfBirth());
 
 
                 return userRepository.save(newUser);
@@ -45,15 +46,15 @@ public class UserServiceImpl implements UserService {
 
 
 
-            } else if (user.getUserRole() == UserRole.THEATER_OWNER) {
+            } else if (user.userRole() == UserRole.THEATER_OWNER) {
 
                 TheaterOwner theaterOwner = new TheaterOwner();
-                theaterOwner.setUsername(user.getUsername());
-                theaterOwner.setEmail(user.getEmail());
-                theaterOwner.setPassword(user.getPassword());
-                theaterOwner.setUserRole(user.getUserRole());
-                theaterOwner.setPhoneNumber(user.getPhoneNumber());
-                theaterOwner.setDateOfBirth(user.getDateOfBirth());
+                theaterOwner.setUsername(user.username());
+                theaterOwner.setEmail(user.email());
+                theaterOwner.setPassword(user.password());
+                theaterOwner.setUserRole(user.userRole());
+                theaterOwner.setPhoneNumber(user.phoneNumber());
+                theaterOwner.setDateOfBirth(user.dateOfBirth());
                 return theaterOwnerRepository.save(theaterOwner);
             } else {
                 throw new IllegalArgumentException("Invalid role");
