@@ -1,6 +1,7 @@
 package com.example.mtb.service.impl;
 
 import com.example.mtb.dto.UserRegistrationResuest;
+import com.example.mtb.dto.UserResponse;
 import com.example.mtb.entity.TheaterOwner;
 import com.example.mtb.entity.User;
 import com.example.mtb.entity.UserDetails;
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDetails userRegister(UserRegistrationResuest user) {
+    public UserResponse userRegister(UserRegistrationResuest user) {
         if(userDetailsRepository.existsByEmail(user.email())){
             throw new UserRegistrationexcaption("this email already existed");
         }else{
@@ -40,7 +41,12 @@ public class UserServiceImpl implements UserService {
                 newUser.setDateOfBirth(user.dateOfBirth());
 
 
-                return userRepository.save(newUser);
+                userRepository.save(newUser);
+                return new UserResponse(
+                        newUser.getUserId(),
+                        newUser.getUsername(),
+                        newUser.getEmail(),
+                        newUser.getUserRole());
 
 
 
@@ -55,7 +61,14 @@ public class UserServiceImpl implements UserService {
                 theaterOwner.setUserRole(user.userRole());
                 theaterOwner.setPhoneNumber(user.phoneNumber());
                 theaterOwner.setDateOfBirth(user.dateOfBirth());
-                return theaterOwnerRepository.save(theaterOwner);
+                theaterOwnerRepository.save(theaterOwner);
+                return new UserResponse(
+                        theaterOwner.getUserId(),
+                        theaterOwner.getUsername(),
+                        theaterOwner.getEmail(),
+                        theaterOwner.getUserRole());
+
+
             } else {
                 throw new IllegalArgumentException("Invalid role");
             }

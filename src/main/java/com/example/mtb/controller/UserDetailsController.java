@@ -2,6 +2,7 @@ package com.example.mtb.controller;
 
 
 import com.example.mtb.dto.UserRegistrationResuest;
+import com.example.mtb.dto.UserResponse;
 import com.example.mtb.entity.UserDetails;
 import com.example.mtb.service.UserService;
 import com.example.mtb.utility.ResponseStructure;
@@ -24,9 +25,9 @@ public class UserDetailsController {
     private final RestResponseBuilder restResponseBuilder;
 
     @PostMapping
-    public ResponseEntity<ResponseStructure<UserDetails>> registerUser(@RequestBody UserRegistrationResuest user){
-        UserDetails userDetails = userService.userRegister(user);
+    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody UserRegistrationResuest user){
+        UserResponse userResponse = userService.userRegister(user);
 
-        return restResponseBuilder.sucess(HttpStatus.CREATED, "User register sucessfully", userDetails);
+        return restResponseBuilder.sucess(HttpStatus.CREATED, "User register sucessfully", userResponse);
     }
 }
