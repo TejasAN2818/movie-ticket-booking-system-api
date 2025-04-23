@@ -13,4 +13,6 @@ public interface UserService {
 
 
     String updateUser(UserRequest updatedUser, String email);
+
+    String softDelete(String email);
 }
