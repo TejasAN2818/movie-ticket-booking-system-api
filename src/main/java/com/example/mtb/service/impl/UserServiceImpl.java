@@ -30,26 +30,30 @@ public class UserServiceImpl implements UserService {
         }else{
 
             if (user.getUserRole() == UserRole.USER) {
-                // Create User object and save
                 User newUser = new User();
                 newUser.setUsername(user.getUsername());
                 newUser.setEmail(user.getEmail());
                 newUser.setPassword(user.getPassword());
                 newUser.setUserRole(user.getUserRole());
+                newUser.setPhoneNumber(user.getPhoneNumber());
                 newUser.setDateOfBirth(user.getDateOfBirth());
-                newUser.setCreatedAt(System.currentTimeMillis());
-                newUser.setUpdatedAt(System.currentTimeMillis());
+
+
                 return userRepository.save(newUser);
+
+
+
+
+
             } else if (user.getUserRole() == UserRole.THEATER_OWNER) {
-                // Create TheaterOwner object and save
+
                 TheaterOwner theaterOwner = new TheaterOwner();
                 theaterOwner.setUsername(user.getUsername());
                 theaterOwner.setEmail(user.getEmail());
                 theaterOwner.setPassword(user.getPassword());
                 theaterOwner.setUserRole(user.getUserRole());
+                theaterOwner.setPhoneNumber(user.getPhoneNumber());
                 theaterOwner.setDateOfBirth(user.getDateOfBirth());
-                theaterOwner.setCreatedAt(System.currentTimeMillis());
-                theaterOwner.setUpdatedAt(System.currentTimeMillis());
                 return theaterOwnerRepository.save(theaterOwner);
             } else {
                 throw new IllegalArgumentException("Invalid role");
