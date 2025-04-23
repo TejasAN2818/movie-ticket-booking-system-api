@@ -40,6 +40,14 @@ public class UserDetailsController {
 
     }
 
+    @DeleteMapping
+    public ResponseEntity<ResponseStructure<String>> softDelete(String email){
+        String str=userService.softDelete(email);
+
+        return restResponseBuilder.sucess(HttpStatus.OK, "User deleted sucessfully", str);
+
+    }
+
 
 
 }
