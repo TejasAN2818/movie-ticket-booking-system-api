@@ -8,6 +8,7 @@ import com.example.mtb.entity.UserDetails;
 import com.example.mtb.service.UserService;
 import com.example.mtb.utility.ResponseStructure;
 import com.example.mtb.utility.RestResponseBuilder;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @AllArgsConstructor
 @ResponseBody
-@RequestMapping("/user")
+@RequestMapping
 
 public class UserDetailsController {
 
@@ -25,25 +26,25 @@ public class UserDetailsController {
 
     private final RestResponseBuilder restResponseBuilder;
 
-    @PostMapping
-    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody UserRegistrationResuest user){
+    @PostMapping("/user")
+    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody @Valid UserRegistrationResuest user){
         UserResponse userResponse = userService.userRegister(user);
 
         return restResponseBuilder.sucess(HttpStatus.CREATED, "User register sucessfully", userResponse);
     }
 
-    @PutMapping
-    public ResponseEntity<ResponseStructure<String>> updateUser(@RequestBody UserRequest updatedUser, String email){
+    @PutMapping("/user")
+    public ResponseEntity<ResponseStructure<String>> updateUser(@RequestBody @Valid UserRequest updatedUser, @RequestParam String email){
         String str=userService.updateUser(updatedUser, email);
 
         return restResponseBuilder.sucess(HttpStatus.OK, "Update user sucessfully", str);
 
     }
 
-    @DeleteMapping
-    public ResponseEntity<ResponseStructure<String>> softDelete(String email){
+    @DeleteMapping("/user")
+    public ResponseEntity<ResponseStructure<String>> softDelete(@RequestParam String email){
         String str=userService.softDelete(email);
-        //done
+        //doneeeeeee
         return restResponseBuilder.sucess(HttpStatus.OK, "User deleted sucessfully", str);
 
     }
