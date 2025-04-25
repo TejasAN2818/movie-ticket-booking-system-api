@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
         if (userDetailsRepository.existsByEmail(user.email())) {
             throw new UserRegistrationexcaption("this email already existed");
         } else {
-
             if (user.userRole() == UserRole.USER) {
                 User newUser = new User();
                 newUser.setUsername(user.username());
@@ -44,6 +43,7 @@ public class UserServiceImpl implements UserService {
                 newUser.setUserRole(user.userRole());
                 newUser.setPhoneNumber(user.phoneNumber());
                 newUser.setDateOfBirth(user.dateOfBirth());
+                newUser.setCreatedAt(System.currentTimeMillis());
 
 
                 userRepository.save(newUser);
@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
                 theaterOwner.setUserRole(user.userRole());
                 theaterOwner.setPhoneNumber(user.phoneNumber());
                 theaterOwner.setDateOfBirth(user.dateOfBirth());
+                theaterOwner.setCreatedAt(System.currentTimeMillis());
                 theaterOwnerRepository.save(theaterOwner);
                 return new UserResponse(
                         theaterOwner.getUserId(),
@@ -83,13 +84,11 @@ public class UserServiceImpl implements UserService {
         if (opt.isEmpty()) {
             throw new UserNotFoundByEmailExcaption("user not found based on this email");
         } else {
-            UserDetails oldUserDetails = opt.get();
-
-
-            UserDetails user = oldUserDetails;
+            UserDetails user = opt.get();
             user.setUsername(updatedUser.username());
             user.setPhoneNumber(updatedUser.phoneNumber());
             user.setDateOfBirth(updatedUser.dateOfBirth());
+            user.setUpdatedAt(System.currentTimeMillis());
 
             userDetailsRepository.save(user);
             return "update sucessfully";
