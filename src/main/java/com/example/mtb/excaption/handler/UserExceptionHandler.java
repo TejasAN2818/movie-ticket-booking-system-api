@@ -1,5 +1,7 @@
 package com.example.mtb.excaption.handler;
 
+import com.example.mtb.excaption.TheaterNotFoundByIdExcaption;
+import com.example.mtb.excaption.TheaterRegistrationExcaption;
 import com.example.mtb.excaption.UserNotFoundByEmailExcaption;
 import com.example.mtb.excaption.UserRegistrationexcaption;
 import com.example.mtb.utility.ErrorStructure;
@@ -33,6 +35,16 @@ public class UserExceptionHandler {
     public ResponseEntity<ErrorStructure<String>> handlerUserNotFoundByEmailExcaption(UserNotFoundByEmailExcaption ex){
 
         return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "Enter the proper email");
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure<String>> handlerTheaterRegistrationExcaption(TheaterRegistrationExcaption ex){
+        return restErrorBuilder.fail(HttpStatus.NOT_FOUND, ex.getMessage(), "this user is not theater owner");
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure<String>> handlerTheaterNotFoundByIdExcaption(TheaterNotFoundByIdExcaption ex){
+        return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "Theater not found by this id");
     }
 
 }
