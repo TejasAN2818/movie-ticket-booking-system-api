@@ -1,9 +1,6 @@
 package com.example.mtb.excaption.handler;
 
-import com.example.mtb.excaption.TheaterNotFoundByIdExcaption;
-import com.example.mtb.excaption.TheaterRegistrationExcaption;
-import com.example.mtb.excaption.UserNotFoundByEmailExcaption;
-import com.example.mtb.excaption.UserRegistrationexcaption;
+import com.example.mtb.excaption.*;
 import com.example.mtb.utility.ErrorStructure;
 import com.example.mtb.utility.RestErrorBuilder;
 import lombok.AllArgsConstructor;
@@ -11,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.lang.IllegalArgumentException;
+
 @AllArgsConstructor
 @RestControllerAdvice
 public class UserExceptionHandler {
@@ -45,6 +45,11 @@ public class UserExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ErrorStructure<String>> handlerTheaterNotFoundByIdExcaption(TheaterNotFoundByIdExcaption ex){
         return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "Theater not found by this id");
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure<String>> handlerScreenNotFoundByIdExcaption(ScreenNotFoundByIdExcaption ex){
+        return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "Screen not found by id");
     }
 
 }
