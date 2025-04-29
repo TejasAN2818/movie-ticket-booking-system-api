@@ -2,7 +2,7 @@ spring:
   application:
     name: movie-ticket-booking-system-api
   datasource:
-    url: jdbc:mysql://localhost:3306/movie-ticket-booking-system-api?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/movie-ticket-booking-system-api1?createDatabaseIfNotExist=true
     username: root
     password: root
   jpa:

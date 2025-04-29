@@ -2,8 +2,6 @@ package com.example.mtb.service.impl;
 
 import com.example.mtb.dto.screen_dto.ScreenRegisterationRequest;
 import com.example.mtb.dto.screen_dto.ScreenResponse;
-import com.example.mtb.dto.screen_dto.ScreenResponseList;
-import com.example.mtb.dto.screen_dto.ScreenUpdateRequest;
 import com.example.mtb.dto.seat_dto.SeatResponse;
 import com.example.mtb.entity.Screen;
 import com.example.mtb.entity.Seat;

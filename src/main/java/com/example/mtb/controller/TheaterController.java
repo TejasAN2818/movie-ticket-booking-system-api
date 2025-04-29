@@ -10,6 +10,7 @@ import com.example.mtb.utility.RestResponseBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ public class TheaterController {
     private final RestResponseBuilder restResponseBuilder;
 
     @PostMapping("/theater")
+    @PreAuthorize("hasAuthority('THEATER_OWNER')")
     public ResponseEntity<ResponseStructure<TheaterResponse>> registerTheater(@RequestBody TheaterRegisterationRequest theater, @RequestParam String userEmail){
         TheaterResponse theaterResponse=theaterService.registerTheater(theater, userEmail);
 
