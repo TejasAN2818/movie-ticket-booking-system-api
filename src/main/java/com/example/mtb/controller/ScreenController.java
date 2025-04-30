@@ -42,6 +42,7 @@ public class ScreenController<screenId> {
 
         return restResponseBuilder.sucess(HttpStatus.FOUND, "seat desplay done", seatResponse);
     }
+    //screen branch
 
 //    @PutMapping
 //    public ResponseEntity<ResponseStructure<ScreenResponse>> updateScreen(@RequestBody ScreenUpdateRequest updatedScreen, @RequestParam String screenId){
