@@ -30,11 +30,10 @@ public class MovieController {
 
 
         try {
-            UUID uuid = UUID.fromString(movieId);
-            MovieResponse movieResponse = movieService.findMovieById(uuid);
+            MovieResponse movieResponse = movieService.findMovieById(movieId);
             return restResponseBuilder.sucess(HttpStatus.FOUND, "Movie found successfully", movieResponse);
         } catch (IllegalArgumentException e) {
-            return restResponseBuilder.sucess(HttpStatus.BAD_REQUEST, "Invalid UUID format", null);
+            return restResponseBuilder.error(HttpStatus.BAD_REQUEST, "Invalid UUID format", null);
         }
 
     }

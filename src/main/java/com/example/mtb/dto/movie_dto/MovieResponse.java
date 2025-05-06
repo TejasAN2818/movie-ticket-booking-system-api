@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public record MovieResponse(
-        UUID movieId,
+        String movieId,
         String title,
         String descripation,
         Set<String> cast,

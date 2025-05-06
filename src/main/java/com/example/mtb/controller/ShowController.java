@@ -27,7 +27,7 @@ public class ShowController {
     @PostMapping("/show")
     public ResponseEntity<ResponseStructure<ShowResponse>> addShow(@RequestParam String theaterId,
                                                                    @RequestParam String screenId,
-                                                                   @RequestParam UUID movieId,
+                                                                   @RequestParam String movieId,
                                                                    @RequestParam Instant startAt
                                                                    ){
         ShowResponse showResponse=showService.addShow(theaterId,screenId,movieId,startAt);

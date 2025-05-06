@@ -18,12 +18,11 @@ public class Movie {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID movieId;
+    private String movieId;
     private String title;
     private String descripation;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> cast;
     private long runtime;
     @Enumerated(EnumType.STRING)

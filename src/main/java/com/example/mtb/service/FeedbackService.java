@@ -6,5 +6,5 @@ import com.example.mtb.dto.feedback_dto.FeedbackResponse;
 import java.util.UUID;
 
 public interface FeedbackService {
-    FeedbackResponse createFeedBack(FeedbackRequest feedback, String userId, UUID movieId);
+    FeedbackResponse createFeedBack(FeedbackRequest feedback, String userId, String movieId);
 }

@@ -36,7 +36,7 @@ public class ShowServiceImpl implements ShowService {
 
 
     @Override
-    public ShowResponse addShow(String theaterId, String screenId, UUID movieId, Instant startAt) {
+    public ShowResponse addShow(String theaterId, String screenId, String movieId, Instant startAt) {
 
         Optional<Theater> optionalTheater=theaterRepository.findById(theaterId);
         if (optionalTheater.isEmpty()){

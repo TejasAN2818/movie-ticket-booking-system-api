@@ -32,7 +32,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
 
     @Override
-    public FeedbackResponse createFeedBack(FeedbackRequest feedback, String userId, UUID movieId) {
+    public FeedbackResponse createFeedBack(FeedbackRequest feedback, String userId, String movieId) {
 
         Optional<User> optionalUser=userRepository.findById(userId);
         if(optionalUser.isPresent()){

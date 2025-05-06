@@ -20,9 +20,11 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
 
     @Override
-    public MovieResponse findMovieById(UUID movieId) {
+    public MovieResponse findMovieById(String movieId) {
 
         Optional<Movie> optionalMovie=movieRepository.findById(movieId);
+        System.out.println("----------------------------------------------------------------------------------------------------------");
+        System.out.println(optionalMovie.isEmpty());
         if (optionalMovie.isPresent()){
             Movie movie=optionalMovie.get();
 
@@ -45,11 +47,15 @@ public class MovieServiceImpl implements MovieService {
             }
             System.out.println(noOfFeedBack);
             System.out.println(totalReatings);
-
-           
-
-
-
+            System.out.println("----------------------------------------------");
+            System.out.println("Creating response:");
+            System.out.println("Movie ID: " + movie.getMovieId());
+            System.out.println("Title: " + movie.getTitle());
+            System.out.println("Certificate: " + movie.getCertificate());
+            System.out.println("Genre: " + movie.getGenre());
+            System.out.println("runtime " + movie.getRuntime());
+            System.out.println("Cast: " + movie.getCast());
+            System.out.println("Avg Ratings: " + avgRatings);
 
             return new MovieResponse(
                     movie.getMovieId(),
@@ -64,7 +70,7 @@ public class MovieServiceImpl implements MovieService {
 
             );
         }else{
-            throw new MovieNotFoundByIdExcaption("Movie not found by this Id");
+            throw new MovieNotFoundByIdExcaption("Movie not found by Id");
         }
     }
 }

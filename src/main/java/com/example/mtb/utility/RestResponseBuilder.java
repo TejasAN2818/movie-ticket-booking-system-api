@@ -16,4 +16,12 @@ public class RestResponseBuilder {
                 .build();
         return new ResponseEntity<>(str, status);
     }
+
+    public <T> ResponseEntity<ResponseStructure<T>> error(HttpStatus status, String message, T data) {
+        ResponseStructure<T> response = new ResponseStructure<>();
+        response.setStatusCode(status.value());
+        response.setMessage(message);
+        response.setData(data);
+        return new ResponseEntity<>(response, status);
+    }
 }

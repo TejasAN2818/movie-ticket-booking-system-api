@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ShowService {
-    ShowResponse addShow(String theaterId, String screenId, UUID movieId, Instant startAt);
+    ShowResponse addShow(String theaterId, String screenId, String movieId, Instant startAt);
 
     AllShowResponse displayAllshow(String screenId);
 }
