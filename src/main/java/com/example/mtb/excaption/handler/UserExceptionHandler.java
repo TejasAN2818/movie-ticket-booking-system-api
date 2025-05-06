@@ -52,4 +52,21 @@ public class UserExceptionHandler {
         return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "Screen not found by id");
     }
 
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure<String>> handlerMovieNotFoundByIdExcaption(MovieNotFoundByIdExcaption ex){
+        return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "movie not found By Id");
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure<String>> handlerShowTimeNotAvailableExcaption(ShowTimeNotAvailableExcaption ex){
+        return restErrorBuilder.fail(HttpStatus.NOT_FOUND, ex.getMessage(), "show will already scheduled at this time");
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure<String>> handlerUserNotFoundByIdExcaption(UserNotFoundByIdExcaption ex){
+        return restErrorBuilder.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "User not foundby Id");
+    }
+
+
+
 }

@@ -1,6 +1,5 @@
 package com.example.mtb.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,14 +7,19 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-public class Seat {
+public class Feedback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String seatId;
-    private String seatname;
+    private String feedbackId;
+    private int ratings;
+    private String review;
     private long createdAt;
 
     @ManyToOne
-    private Screen screen;
+    private User user;
+
+    @ManyToOne
+    private Movie movie;
+
 }

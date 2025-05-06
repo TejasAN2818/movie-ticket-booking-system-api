@@ -1,12 +1,12 @@
 package com.example.mtb.utility;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResponseStructure<T> {
 
     private int statusCode;
