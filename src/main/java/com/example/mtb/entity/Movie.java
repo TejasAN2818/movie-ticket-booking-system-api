@@ -18,6 +18,7 @@ public class Movie {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String movieId;
     private String title;
     private String descripation;

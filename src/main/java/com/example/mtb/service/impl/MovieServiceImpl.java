@@ -23,8 +23,6 @@ public class MovieServiceImpl implements MovieService {
     public MovieResponse findMovieById(String movieId) {
 
         Optional<Movie> optionalMovie=movieRepository.findById(movieId);
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println(optionalMovie.isEmpty());
         if (optionalMovie.isPresent()){
             Movie movie=optionalMovie.get();
 
@@ -45,17 +43,6 @@ public class MovieServiceImpl implements MovieService {
                 }
                 avgRatings=totalReatings/noOfFeedBack;
             }
-            System.out.println(noOfFeedBack);
-            System.out.println(totalReatings);
-            System.out.println("----------------------------------------------");
-            System.out.println("Creating response:");
-            System.out.println("Movie ID: " + movie.getMovieId());
-            System.out.println("Title: " + movie.getTitle());
-            System.out.println("Certificate: " + movie.getCertificate());
-            System.out.println("Genre: " + movie.getGenre());
-            System.out.println("runtime " + movie.getRuntime());
-            System.out.println("Cast: " + movie.getCast());
-            System.out.println("Avg Ratings: " + avgRatings);
 
             return new MovieResponse(
                     movie.getMovieId(),
