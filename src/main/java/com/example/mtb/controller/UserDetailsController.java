@@ -26,7 +26,7 @@ public class UserDetailsController {
 
     private final RestResponseBuilder restResponseBuilder;
 
-    @PostMapping("/user")
+    @PostMapping("/registration")
     public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody @Valid UserRegistrationResuest user){
         UserResponse userResponse = userService.userRegister(user);
 

@@ -14,6 +14,8 @@ import com.example.mtb.repository.UserDetailsRepository;
 import com.example.mtb.repository.UserRepository;
 import com.example.mtb.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     private final TheaterOwnerRepository theaterOwnerRepository;
 
+    @Autowired
+    private final PasswordEncoder passwordEncouder;
+
 
     @Override
     public UserResponse userRegister(UserRegistrationResuest user) {
@@ -39,7 +44,9 @@ public class UserServiceImpl implements UserService {
                 User newUser = new User();
                 newUser.setUsername(user.username());
                 newUser.setEmail(user.email());
-                newUser.setPassword(user.password());
+           //     newUser.setPassword(user.password());
+               // user.setPassword(passwordEncouder.encode(users.password()));
+                newUser.setPassword(passwordEncouder.encode(user.password()));
                 newUser.setUserRole(user.userRole());
                 newUser.setPhoneNumber(user.phoneNumber());
                 newUser.setDateOfBirth(user.dateOfBirth());
@@ -59,7 +66,9 @@ public class UserServiceImpl implements UserService {
                 TheaterOwner theaterOwner = new TheaterOwner();
                 theaterOwner.setUsername(user.username());
                 theaterOwner.setEmail(user.email());
-                theaterOwner.setPassword(user.password());
+                //theaterOwner.setPassword(user.password());
+               // owner.setPassword(passwordEncouder.encode(users.password()));
+                theaterOwner.setPassword(passwordEncouder.encode(user.password()));
                 theaterOwner.setUserRole(user.userRole());
                 theaterOwner.setPhoneNumber(user.phoneNumber());
                 theaterOwner.setDateOfBirth(user.dateOfBirth());
