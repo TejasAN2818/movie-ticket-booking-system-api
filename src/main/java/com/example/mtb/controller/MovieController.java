@@ -21,20 +21,13 @@ public class MovieController {
     private final MovieService movieService;
     private final RestResponseBuilder restResponseBuilder;
 
-    @GetMapping("/movie")
-    public ResponseEntity<ResponseStructure<MovieResponse>> findMovie(@RequestParam String movieId){
+    @GetMapping("/movie/{movieId}")
+    public ResponseEntity<ResponseStructure<MovieResponse>> findMovie(@PathVariable String movieId){
 
-//        MovieResponse movieResponse=movieService.findMovieById(movieId);
-//
-//        return restResponseBuilder.sucess(HttpStatus.FOUND, "movie found sucessfully", movieResponse);
-
-
-        try {
             MovieResponse movieResponse = movieService.findMovieById(movieId);
+
             return restResponseBuilder.sucess(HttpStatus.FOUND, "Movie found successfully", movieResponse);
-        } catch (IllegalArgumentException e) {
-            return restResponseBuilder.error(HttpStatus.BAD_REQUEST, "Invalid UUID format", null);
-        }
+
 
     }
 

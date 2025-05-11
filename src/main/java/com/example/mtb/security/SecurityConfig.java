@@ -27,7 +27,7 @@ public class SecurityConfig {
 
         http.csrf(Csrf->Csrf.disable());
 
-        http.authorizeHttpRequests(avth->avth.requestMatchers(HttpMethod.POST,"/registration", "/login")
+        http.authorizeHttpRequests(avth->avth.requestMatchers(HttpMethod.POST,"/registration", "/login", "/refresh")
                 .permitAll()
                 .anyRequest().authenticated());
 

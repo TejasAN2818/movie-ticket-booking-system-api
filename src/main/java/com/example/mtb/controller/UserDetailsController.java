@@ -33,16 +33,16 @@ public class UserDetailsController {
         return restResponseBuilder.sucess(HttpStatus.CREATED, "User register sucessfully", userResponse);
     }
 
-    @PutMapping("/user")
-    public ResponseEntity<ResponseStructure<String>> updateUser(@RequestBody @Valid UserRequest updatedUser, @RequestParam String email){
+    @PutMapping("/profile/{email}")
+    public ResponseEntity<ResponseStructure<String>> updateUser(@RequestBody @Valid UserRequest updatedUser, @PathVariable String email){
         String str=userService.updateUser(updatedUser, email);
 
         return restResponseBuilder.sucess(HttpStatus.OK, "Update user sucessfully", str);
 
     }
 
-    @DeleteMapping("/user")
-    public ResponseEntity<ResponseStructure<String>> softDelete(@RequestParam String email){
+    @DeleteMapping("/profile/{email}")
+    public ResponseEntity<ResponseStructure<String>> softDelete(@PathVariable String email){
         String str=userService.softDelete(email);
         //doneeeeeee
         return restResponseBuilder.sucess(HttpStatus.OK, "User deleted sucessfully", str);

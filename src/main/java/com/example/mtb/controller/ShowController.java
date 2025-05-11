@@ -24,10 +24,10 @@ public class ShowController {
     private final ShowService showService;
     private final RestResponseBuilder restResponseBuilder;
 
-    @PostMapping("/show")
-    public ResponseEntity<ResponseStructure<ShowResponse>> addShow(@RequestParam String theaterId,
-                                                                   @RequestParam String screenId,
-                                                                   @RequestParam String movieId,
+    @PostMapping("/theater/{theaterId}/screen/{screenId}/movie/{movieId}")
+    public ResponseEntity<ResponseStructure<ShowResponse>> addShow(@PathVariable String theaterId,
+                                                                   @PathVariable String screenId,
+                                                                   @PathVariable String movieId,
                                                                    @RequestParam Instant startAt
                                                                    ){
         ShowResponse showResponse=showService.addShow(theaterId,screenId,movieId,startAt);
@@ -35,7 +35,7 @@ public class ShowController {
         return restResponseBuilder.sucess(HttpStatus.CREATED,"show created sucessfully", showResponse);
     }
 
-    @GetMapping("/show")
+    @GetMapping("/show/screen/{screenId}")
     public ResponseEntity<ResponseStructure<AllShowResponse>> displayAllShowByScreenId(@RequestParam  String screenId){
 
         AllShowResponse allShowResponses=showService.displayAllshow(screenId);

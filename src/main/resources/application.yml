@@ -2,9 +2,9 @@ spring:
   application:
     name: movie-ticket-booking-system-api
   datasource:
-    url: jdbc:mysql://localhost:3306/movieticket?createDatabaseIfNotExist=true
-    username: root
-    password: root
+    url: jdbc:mysql://localhost:3306/movietickettt?createDatabaseIfNotExist=true
+    username: "${MYSQL_USERNAME:root}"
+    password: "${MYSQL_PWD:root}"
   jpa:
     open-in-view: false
     show-sql: true
@@ -13,3 +13,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+app:
+  token:
+    secret: "${TOKEN_SECRET:Up0r3MSufFBslfdXDoVznquvfiQlNAfw8NOe8NAhybw=}"
+

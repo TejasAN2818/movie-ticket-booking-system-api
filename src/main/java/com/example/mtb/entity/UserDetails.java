@@ -4,6 +4,8 @@ import com.example.mtb.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -28,4 +30,9 @@ public class UserDetails {
     private Long updatedAt;
     private boolean isDelete;
     private Instant deletedAt;
+
+    @CreatedBy
+    private String createdBy;
+    @LastModifiedBy
+    private String lastModifiedBy;
 }

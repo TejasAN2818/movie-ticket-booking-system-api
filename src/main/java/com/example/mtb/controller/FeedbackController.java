@@ -22,8 +22,8 @@ public class FeedbackController {
     private final FeedbackService feedbackService;
     private final RestResponseBuilder restResponseBuilder;
 
-    @PostMapping("/feedback")
-    public ResponseEntity<ResponseStructure<FeedbackResponse>> createfeedback(@RequestBody FeedbackRequest feedback, @RequestParam String userId, @RequestParam String movieId){
+    @PostMapping("/user/{userId}/movie/{movieId}")
+    public ResponseEntity<ResponseStructure<FeedbackResponse>> createfeedback(@RequestBody FeedbackRequest feedback, @PathVariable String userId, @PathVariable String movieId){
 
         FeedbackResponse feedbackResponse=feedbackService.createFeedBack(feedback, userId, movieId);
 

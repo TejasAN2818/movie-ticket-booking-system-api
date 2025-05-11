@@ -27,8 +27,8 @@ public class ScreenController<screenId> {
     private final ScreenService screenService;
     private final RestResponseBuilder restResponseBuilder;
 
-    @PostMapping("/screen")
-    public ResponseEntity<ResponseStructure<ScreenResponse>> registerScreen(@RequestBody ScreenRegisterationRequest screen, @RequestParam String theaterId){
+    @PostMapping("/screen/{theaterId}")
+    public ResponseEntity<ResponseStructure<ScreenResponse>> registerScreen(@RequestBody ScreenRegisterationRequest screen, @PathVariable String theaterId){
 
         ScreenResponse screenResponse=screenService.registerScreen(screen, theaterId);
 
@@ -36,18 +36,11 @@ public class ScreenController<screenId> {
 
     }
 
-    @GetMapping("/screen")
-    public ResponseEntity<ResponseStructure<ScreenResponse>> displayScreen(@RequestParam String screenId){
+    @GetMapping("/screen/{screenId}")
+    public ResponseEntity<ResponseStructure<ScreenResponse>> displayScreen(@PathVariable String screenId){
         ScreenResponse seatResponse=screenService.findScreenById(screenId);
 
         return restResponseBuilder.sucess(HttpStatus.FOUND, "seat desplay done", seatResponse);
     }
-    //screen branch
-
-//    @PutMapping
-//    public ResponseEntity<ResponseStructure<ScreenResponse>> updateScreen(@RequestBody ScreenUpdateRequest updatedScreen, @RequestParam String screenId){
-//
-//        ScreenResponse screenResponse=screenService.updateScreenById(updatedScreen, screenId);
-//    }
 
 }

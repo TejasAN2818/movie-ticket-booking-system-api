@@ -1,9 +1,12 @@
 package com.example.mtb.security;
 
+import com.example.mtb.config.AppENV;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +15,11 @@ import java.util.Date;
 
 @Service
 @Component
+@AllArgsConstructor
 public class JwtService {
 
-    private String secret;
+    //private String secret;
+    private final AppENV env;
 
     public String createJwtToken(TokenPayload tokenPayload) {
         return Jwts.builder()
@@ -27,11 +32,13 @@ public class JwtService {
     }
 
     private Key getSignatureKey() {
-        return Keys.hmacShaKeyFor(Decoders.BASE64.decode("Up0r3MSufFBslfdXDoVznquvfiQlNAfw8NOe8NAhybw="));
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(env.getToken().getSecret()));
     }
 
-    public void setSecret(String secret) {
-        this.secret = secret;
+    public Claims pasresToken(String token){
+        return jwts.parserBuilder().setSigninkey(getSignatureKey()).build().parseClaims
     }
+
+
 }
 

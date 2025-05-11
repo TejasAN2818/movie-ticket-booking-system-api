@@ -20,13 +20,4 @@ import java.util.List;
 @ResponseBody
 public class SeatController {
 
-    private final SeatServices seatServices;
-
-//    @GetMapping
-//    public ResponseEntity<ResponseStructure<List<SeatResponse>>> displaySeatByScreenId(@RequestParam String screenId){
-//
-//        List<SeatResponse> seatResponseList=seatServices.displayAllSeatByScreenId(screenId){
-//
-//        }
-//    }
 }

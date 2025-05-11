@@ -23,23 +23,23 @@ public class TheaterController {
     private final TheaterService theaterService;
     private final RestResponseBuilder restResponseBuilder;
 
-    @PostMapping("/theater")
+    @PostMapping("/theater/{email}")
     @PreAuthorize("hasAuthority('THEATER_OWNER')")
-    public ResponseEntity<ResponseStructure<TheaterResponse>> registerTheater(@RequestBody TheaterRegisterationRequest theater, @RequestParam String userEmail){
-        TheaterResponse theaterResponse=theaterService.registerTheater(theater, userEmail);
+    public ResponseEntity<ResponseStructure<TheaterResponse>> registerTheater(@RequestBody TheaterRegisterationRequest theater, @PathVariable String email){
+        TheaterResponse theaterResponse=theaterService.registerTheater(theater, email);
 
         return restResponseBuilder.sucess(HttpStatus.CREATED, "Theater register sucessfully", theaterResponse);
     }
 
-    @PutMapping("/theater")
-    public  ResponseEntity<ResponseStructure<String>> updateTheater(@RequestBody TheaterRequest updatedTheater, @RequestParam String theaterId){
+    @PutMapping("/theater/{theaterId}")
+    public  ResponseEntity<ResponseStructure<String>> updateTheater(@RequestBody TheaterRequest updatedTheater, @PathVariable String theaterId){
         String str=theaterService.updateTheaterById(updatedTheater, theaterId);
 
         return restResponseBuilder.sucess(HttpStatus.OK, "theater updated sucessfully", str);
     }
 
-    @GetMapping("/theater")
-    public ResponseEntity<ResponseStructure<TheaterResponse>> findTheaterById(@RequestParam String theaterId){
+    @GetMapping("/theater/{theaterId}")
+    public ResponseEntity<ResponseStructure<TheaterResponse>> findTheaterById(@PathVariable String theaterId){
         TheaterResponse theaterResponse=theaterService.findTheaterById(theaterId);
 
         return restResponseBuilder.sucess(HttpStatus.FOUND, "theater display secussfully", theaterResponse);
