@@ -13,10 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+import java.util.List;
+
 @Controller
 @AllArgsConstructor
 @RequestMapping
-@ResponseBody
 public class TheaterController {
 
     private final TheaterService theaterService;
@@ -42,6 +44,13 @@ public class TheaterController {
 
         return restResponseBuilder.sucess(HttpStatus.FOUND, "theater display secussfully", theaterResponse);
 
+    }
+
+    @GetMapping("/search_page")
+    public String search_Page(){
+       // HashSet<Theater> theatersCity=theaterService.displayAllCity();
+
+        return "search_page";
     }
 
 

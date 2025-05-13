@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f8f8;
+}
+
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: red;
+}
+
+.top-nav input {
+  flex: 1;
+  margin: 0 20px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.location {
+  margin-right: 10px;
+}
+
+.sign-in {
+  background-color: #e41b23;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.menu-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f2f2f2;
+  font-size: 14px;
+}
+
+.nav-links a, .extras a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  padding: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.see-all {
+  font-size: 14px;
+  color: #e41b23;
+  text-decoration: none;
+}
+
+.movie-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.movie-card {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 180px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 10px;
+  flex: 0 0 auto;
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 8px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.movie-card h3 {
+  font-size: 16px;
+  margin: 8px 0 4px 0;
+}
+
+.movie-card p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.badge {
+  margin-top: 8px;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+.badge.red {
+  background-color: #000;
+}
+
+.badge.green {
+  background-color: #000;
+}
+
+
